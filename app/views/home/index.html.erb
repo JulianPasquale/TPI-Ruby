@@ -1,3 +1,5 @@
 <h1>WELCOME <%= current_user %> </h1>
 
-<li> <%= link_to "Sign out", destroy_user_session_path, :method => :get %> </li>
+<li><a> <%= link_to "Sign out", destroy_user_session_path, :method => :get %> </a></li>
+
+<a><%= link_to "courses", courses_url %> </a>
