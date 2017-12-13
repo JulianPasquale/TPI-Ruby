@@ -4,7 +4,11 @@ class EvaluationsController < ApplicationController
   # GET /evaluations
   # GET /evaluations.json
   def index
-    @evaluations = Evaluation.all
+    if (params[:course_id]) then
+      @evaluations = Evaluation.where(:id => params[:course_id])
+    else
+      @evaluations = Evaluation.all
+    end
   end
 
   # GET /evaluations/1
