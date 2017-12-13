@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  grade: 1.5
+  student: one
+  evaluation: one
+
+two:
+  grade: 1.5
+  student: two
+  evaluation: two
