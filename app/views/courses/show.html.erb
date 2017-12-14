@@ -1,17 +1,10 @@
 <p id="notice"><%= notice %></p>
+<h1><%= @course.year %> - <%= @course.name %></h1> 
+<small>
+	<%= link_to 'Edit', edit_course_path(@course) %> -- 
+	<%= link_to "Change course", courses_path%> 
+</small>
 
-<p>
-  <strong>Year:</strong>
-  <%= @course.year %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @course.name %>
-</p>
-
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
 <br>
 <%= link_to 'Students', course_students_path(@course) %>
 <br>

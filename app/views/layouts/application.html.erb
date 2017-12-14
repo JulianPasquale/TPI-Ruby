@@ -45,14 +45,15 @@
 
 
 			    </ul>
+			    <ul class="navbar-nav right">
 			    <%- if (session[:actual_course]) then -%>
-			      <%= link_to "Change course", courses_path, :method => :get %>
+			      <li class="nav-item"><%= link_to "Change course", courses_path, :method => :get, :class=> 'nav-link' %></li>
 			    <%- if (session[:actual_evaluation]) then -%>
-			      <%= link_to "Change evaluation", course_evaluations_path(Course.find(session[:actual_course])), :method => :get %>
+			      <li class="nav-item"><%= link_to "Change evaluation", course_evaluations_path(Course.find(session[:actual_course])), :method => :get, :class=> 'nav-link' %></li>
 		    	<%- end -%>
 		    	<%- end -%>
-		    	<%= link_to "Sign out", destroy_user_session_path, :method => :get %>
-
+		    	<li class="nav-item"><%= link_to "Sign out", destroy_user_session_path, :method => :get, :class=>'nav-link' %> </li>
+		    </ul>
 		  	</div>
 			</nav>
 		</div>
@@ -60,7 +61,10 @@
 
 
   <body>
+  	<div class="container">
 
     <%= yield %>
+
+    </div>
   </body>
 </html>
