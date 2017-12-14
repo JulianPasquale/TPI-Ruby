@@ -1,14 +1,11 @@
 class StudentsController < ApplicationController
+  before_action :set_course
   before_action :set_student, only: [:show, :edit, :update, :destroy]
 
   # GET /students
   # GET /students.json
   def index
-    if (params[:course_id]) then
-      @students = Student.where(:course_id => params[:course_id])
-    else
-      @students = Student.all
-    end
+    @students = @course.students
   end
 
   # GET /students/1
@@ -28,11 +25,11 @@ class StudentsController < ApplicationController
   # POST /students
   # POST /students.json
   def create
-    @student = Student.new(student_params)
+    @student = @course.students.new(student_params)
 
     respond_to do |format|
       if @student.save
-        format.html { redirect_to @student, notice: 'Student was successfully created.' }
+        format.html { redirect_to [@course,@student], notice: 'Student was successfully created.' }
         format.json { render :show, status: :created, location: @student }
       else
         format.html { render :new }
@@ -67,6 +64,9 @@ class StudentsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_course
+      @course=Course.find(params[:course_id])
+    end
     def set_student
       @student = Student.find(params[:id])
     end

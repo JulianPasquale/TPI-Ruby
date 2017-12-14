@@ -1,6 +1,6 @@
 class Course < ApplicationRecord
   has_many :students
-  has_many :evaluation
+  has_many :evaluations
 
   def to_s
     name

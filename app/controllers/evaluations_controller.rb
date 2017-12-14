@@ -1,14 +1,11 @@
 class EvaluationsController < ApplicationController
+  before_action :set_course
   before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
 
   # GET /evaluations
   # GET /evaluations.json
   def index
-    if (params[:course_id]) then
-      @evaluations = Evaluation.where(:course_id => params[:course_id])
-    else
-      @evaluations = Evaluation.all
-    end
+    @evaluations= @course.evaluations
   end
 
   # GET /evaluations/1
@@ -24,7 +21,7 @@ class EvaluationsController < ApplicationController
 
   # GET /evaluations/new
   def new
-    @evaluation = Evaluation.new
+    @evaluation = @course.evaluations.new
   end
 
   # GET /evaluations/1/edit
@@ -34,11 +31,11 @@ class EvaluationsController < ApplicationController
   # POST /evaluations
   # POST /evaluations.json
   def create
-    @evaluation = Evaluation.new(evaluation_params)
+    @evaluation = @course.evaluations.new(evaluation_params)
 
     respond_to do |format|
       if @evaluation.save
-        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }
+        format.html { redirect_to [@course,@evaluation], notice: 'Evaluation was successfully created.' }
         format.json { render :show, status: :created, location: @evaluation }
       else
         format.html { render :new }
@@ -73,6 +70,10 @@ class EvaluationsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_course
+      @course=Course.find(params[:course_id])
+    end
+
     def set_evaluation
       @evaluation = Evaluation.find(params[:id])
     end
