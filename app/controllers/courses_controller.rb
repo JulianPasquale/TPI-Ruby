@@ -5,11 +5,19 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = Course.all
+    session.delete(:actual_course)
+    session.delete(:actual_evaluation)
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
+    if params[:course_id] then
+      @param = params[:course_id]
+    else
+      @param = params[:id]  
+    end
+    session[:actual_course] = @param
   end
 
   # GET /courses/new

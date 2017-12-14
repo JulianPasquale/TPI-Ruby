@@ -3,13 +3,63 @@
   <head>
     <title>TPIRuby</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
+	<header>
+		<div class="container-fluid"> 
+			<nav class="navbar navbar-expand navbar-light" style="background-color: #e3f2fd;">
+			  <span class="navbar-brand" href="#"><img width="35" height="35" alt="" src=<%= image_url('ruby.png') %>></span>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNav">
+			    <ul class="navbar-nav mr-auto">
+
+			      <%- if (session[:actual_course]) then -%>
+			      
+			      <li class="nav-item">
+			    	<%= link_to "Courses", course_path(Course.find(session[:actual_course])), :method => :get, :style =>'text-decoration:none', :class =>'nav-link' %>
+			      </li>
+
+			      <li class="nav-item">
+			        <%= link_to 'Students', course_students_path(Course.find(session[:actual_course])), :style =>'text-decoration:none', :class =>'nav-link' %>
+			      </li>
+			      <li class="nav-item">
+			        <%= link_to 'Evaluations', course_evaluations_path(Course.find(session[:actual_course])), :style =>'text-decoration:none', :class =>'nav-link' %>
+			      </li>
+
+			      <%- if (session[:actual_evaluation]) then -%>
+			      <li class="nav-item">
+			        <%= link_to 'Grades', course_evaluation_grades_path(Course.find(session[:actual_course]), Evaluation.find(session[:actual_evaluation])), :style =>'text-decoration:none', :class =>'nav-link' %>	
+			      </li>
+			      <%- end -%>
+
+			      <%- else -%>
+			      <li class="nav-item">
+			    	<%= link_to "Courses", courses_path, :method => :get, :style =>'text-decoration:none', :class =>'nav-link' %>
+			      </li>
+			      <%- end -%>
+
+
+			    </ul>
+			    <%- if (session[:actual_course]) then -%>
+			      <%= link_to "Change course", courses_path, :method => :get %>
+			    <%- if (session[:actual_evaluation]) then -%>
+			      <%= link_to "Change evaluation", course_evaluations_path(Course.find(session[:actual_course])), :method => :get %>
+		    	<%- end -%>
+		    	<%- end -%>
+		    	<%= link_to "Sign out", destroy_user_session_path, :method => :get %>
+
+		  	</div>
+			</nav>
+		</div>
+	</header>
+
+
   <body>
-<li><%= link_to "Sign out", destroy_user_session_path, :method => :get %> </li>
 
     <%= yield %>
   </body>

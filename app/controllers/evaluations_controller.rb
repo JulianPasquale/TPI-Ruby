@@ -5,7 +5,7 @@ class EvaluationsController < ApplicationController
   # GET /evaluations.json
   def index
     if (params[:course_id]) then
-      @evaluations = Evaluation.where(:id => params[:course_id])
+      @evaluations = Evaluation.where(:course_id => params[:course_id])
     else
       @evaluations = Evaluation.all
     end
@@ -14,6 +14,12 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/1
   # GET /evaluations/1.json
   def show
+    if (params[:evaluation_id]) then
+      @param = params[:evaluation_id]
+    else
+      @param = params[:id]
+    end
+    session[:actual_evaluation] = @param
   end
 
   # GET /evaluations/new

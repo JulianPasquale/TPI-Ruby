@@ -5,7 +5,7 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
     if (params[:course_id]) then
-      @students = Student.where(:id => params[:course_id])
+      @students = Student.where(:course_id => params[:course_id])
     else
       @students = Student.all
     end
