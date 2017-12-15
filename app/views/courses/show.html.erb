@@ -6,7 +6,6 @@
 </small>
 
 <br>
-<%= link_to 'Students', course_students_path(@course) %>
-<br>
-<%= link_to 'Evaluations', course_evaluations_path(@course) %>
+<button class="btn btn-primary"> <%= link_to 'Students', course_students_path(@course), {:style =>'color:white;'} %> </button>
+<button class="btn btn-primary"> <%= link_to 'Evaluations', course_evaluations_path(@course), {:style =>'color:white;'} %> </button>
 

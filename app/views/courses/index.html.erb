@@ -1,28 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Courses</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Year</th>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <ul class="list-group">
     <% @courses.each do |course| %>
-      <tr>
-        <td><%= course.year %></td>
-        <td><%= course.name %></td>
-        <td><%= link_to 'Show', course %></td>
-        <td><%= link_to 'Edit', edit_course_path(course) %></td>
-        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <li class="list-group-item"><%= link_to "#{course.year} - #{course.name}", course, {:style => 'text-decoration: none; color:#e1121d;'} %></li>
+          <img style="height: 30px; width: 30px;" src=<%= image_url('edit.png') %> alt="Edit"> 
+          <%= link_to "edit",edit_course_path(course) %>
+          | 
+          <img style="height: 30px; width: 30px;" src=<%= image_url('remove.png')%> alt="Remove"> 
+          <%= link_to "delete", course, method: :delete, data: { confirm: 'Are you sure?' } %>
+          
+         
     <% end %>
-  </tbody>
-</table>
-
+  </ul>
 <br>
 
 <%= link_to 'New Course', new_course_path %>

@@ -23,8 +23,11 @@
   <div class="actions">
     <%= f.submit "Log in" %>
   </div>
+
+  <%- if alert.present? then -%>
 <p style="color:red;" class="alert"><%= alert %></p>
 
+  <%- end -%>
 <% end %>
 
 </div>
