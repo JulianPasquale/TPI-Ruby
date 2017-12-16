@@ -1,10 +1,11 @@
 class GradesController < ApplicationController
+  before_action :set_evaluation
   before_action :set_grade, only: [:show, :edit, :update, :destroy]
 
   # GET /grades
   # GET /grades.json
   def index
-    @grades = Grade.all
+    @grades = @evaluation.grades
   end
 
   # GET /grades/1
@@ -28,7 +29,7 @@ class GradesController < ApplicationController
 
     respond_to do |format|
       if @grade.save
-        format.html { redirect_to @grade, notice: 'Grade was successfully created.' }
+        format.html { redirect_to [@evaluation.course], notice: 'Grade was successfully created.' }
         format.json { render :show, status: :created, location: @grade }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class GradesController < ApplicationController
   def update
     respond_to do |format|
       if @grade.update(grade_params)
-        format.html { redirect_to @grade, notice: 'Grade was successfully updated.' }
+        format.html { redirect_to [@evaluation.course], notice: 'Grade was successfully updated.' }
         format.json { render :show, status: :ok, location: @grade }
       else
         format.html { render :edit }
@@ -56,13 +57,17 @@ class GradesController < ApplicationController
   def destroy
     @grade.destroy
     respond_to do |format|
-      format.html { redirect_to grades_url, notice: 'Grade was successfully destroyed.' }
+      format.html { redirect_to [@evaluation.course], notice: 'Grade was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_evaluation
+      @evaluation= Evaluation.find(params[:evaluation_id])
+    end
+
     def set_grade
       @grade = Grade.find(params[:id])
     end

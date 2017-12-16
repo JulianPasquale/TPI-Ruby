@@ -31,12 +31,6 @@
 			        <%= link_to 'Evaluations', course_evaluations_path(Course.find(session[:actual_course])), :style =>'text-decoration:none', :class =>'nav-link' %>
 			      </li>
 
-			      <%- if (session[:actual_evaluation]) then -%>
-			      <li class="nav-item">
-			        <%= link_to 'Grades', course_evaluation_grades_path(Course.find(session[:actual_course]), Evaluation.find(session[:actual_evaluation])), :style =>'text-decoration:none', :class =>'nav-link' %>	
-			      </li>
-			      <%- end -%>
-
 			      <%- else -%>
 			      <li class="nav-item">
 			    	<%= link_to "Courses", courses_path, :method => :get, :style =>'text-decoration:none', :class =>'nav-link' %>

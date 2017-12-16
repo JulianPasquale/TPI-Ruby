@@ -20,5 +20,5 @@
   <%= @evaluation.course %>
 </p>
 
-<%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
-<%= link_to 'Back', evaluations_path %>
+<%= link_to 'Edit', edit_course_evaluation_path(@course,@evaluation) %> |
+<%= link_to 'Back', course_evaluations_path(@course) %>

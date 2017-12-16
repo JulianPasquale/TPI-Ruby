@@ -11,12 +11,6 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/1
   # GET /evaluations/1.json
   def show
-    if (params[:evaluation_id]) then
-      @param = params[:evaluation_id]
-    else
-      @param = params[:id]
-    end
-    session[:actual_evaluation] = @param
   end
 
   # GET /evaluations/new
@@ -49,7 +43,7 @@ class EvaluationsController < ApplicationController
   def update
     respond_to do |format|
       if @evaluation.update(evaluation_params)
-        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully updated.' }
+        format.html { redirect_to [@course,@evaluation], notice: 'Evaluation was successfully updated.' }
         format.json { render :show, status: :ok, location: @evaluation }
       else
         format.html { render :edit }
@@ -63,7 +57,7 @@ class EvaluationsController < ApplicationController
   def destroy
     @evaluation.destroy
     respond_to do |format|
-      format.html { redirect_to evaluations_url, notice: 'Evaluation was successfully destroyed.' }
+      format.html { redirect_to [@course,@evaluation], notice: 'Evaluation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

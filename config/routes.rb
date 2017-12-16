@@ -2,14 +2,10 @@ Rails.application.routes.draw do
   root to: 'courses#index'
   devise_for :users, only: [:sessions]
 
-  resources :students
-  resources :evaluations
-  resources :grades
-
   resources :courses do
   	resources :students
-	resources :evaluations do
-		resources :grades
+	resources :evaluations, except: :show do
+		resources :grades, except: :show
 	end
   end
 

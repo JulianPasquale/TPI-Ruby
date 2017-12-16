@@ -3,16 +3,20 @@
 <h1>Courses</h1>
   <ul class="list-group">
     <% @courses.each do |course| %>
-        <li class="list-group-item"><%= link_to "#{course.year} - #{course.name}", course, {:style => 'text-decoration: none; color:#e1121d;'} %></li>
-          <img style="height: 30px; width: 30px;" src=<%= image_url('edit.png') %> alt="Edit"> 
-          <%= link_to "edit",edit_course_path(course) %>
-          | 
-          <img style="height: 30px; width: 30px;" src=<%= image_url('remove.png')%> alt="Remove"> 
-          <%= link_to "delete", course, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <li class="list-group-item"><%= link_to "#{course.year} - #{course.name}", course, {:style => 'text-decoration: none; color:#e1121d;'} %>
           
-         
+          <%= link_to course, method: :delete, data: { confirm: 'Are you sure?' }, :style=>"float:right; height: 30px; width: 30px; display: inline;" do %>
+            <img src=<%= image_url('remove.png')%> alt="Remove"> 
+          <% end %>
+
+          <%= link_to edit_course_path(course),{:style=>"margin-left: 15px;height: 30px; width: 30px; display: inline;"} do %>
+            <img src=<%= image_url('edit.png') %> style="height: 30px; width: 30px;">
+          <% end %>
+
+      </li>  
+        
     <% end %>
   </ul>
 <br>
 
-<%= link_to 'New Course', new_course_path %>
+<%= link_to 'New Course', new_course_path,{:class=>'btn btn-primary'} %>
