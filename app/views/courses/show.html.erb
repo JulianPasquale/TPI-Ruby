@@ -30,8 +30,18 @@
   	<% @course.students.each do |student| %>
       <tr>
         <td><%= student %></td>
-      	<% student.grades.each do |grade| %>
-        	<td><%= if (grade.grade==-1) then "Ausente" else grade.grade end %></td>
+      	<% student.grades.order("evaluation_id").each do |grade| %>
+        	<td><%= if (grade.grade==-1) then 
+                    "Ausente" 
+                  else 
+                    if grade.passed? then
+                      "Aprobado(#{grade.grade})" 
+                    else
+                      "Desaprobado(#{grade.grade})"
+                    end 
+                  end 
+                %>      
+          </td>
         <td><%= link_to 'Edit', edit_course_evaluation_grade_path(@course,grade.evaluation,grade) %></td>
       	<% end %>  
       </tr>

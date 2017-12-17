@@ -29,7 +29,7 @@ class EvaluationsController < ApplicationController
 
     respond_to do |format|
       if @evaluation.save
-        format.html { redirect_to [@course,@evaluation], notice: 'Evaluation was successfully created.' }
+        format.html { redirect_to @course, notice: 'Evaluation was successfully created.' }
         format.json { render :show, status: :created, location: @evaluation }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class EvaluationsController < ApplicationController
   def update
     respond_to do |format|
       if @evaluation.update(evaluation_params)
-        format.html { redirect_to [@course,@evaluation], notice: 'Evaluation was successfully updated.' }
+        format.html { redirect_to @course, notice: 'Evaluation was successfully updated.' }
         format.json { render :show, status: :ok, location: @evaluation }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class EvaluationsController < ApplicationController
   def destroy
     @evaluation.destroy
     respond_to do |format|
-      format.html { redirect_to [@course,@evaluation], notice: 'Evaluation was successfully destroyed.' }
+      format.html { redirect_to @course, notice: 'Evaluation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

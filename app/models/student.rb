@@ -1,6 +1,6 @@
 class Student < ApplicationRecord
   belongs_to :course
-  has_many :grades
+  has_many :grades, :dependent => :destroy
   validates :name, presence:true, length:{maximum: 100}
   validates :lastname, presence:true, length:{maximum: 100}
   validates :dni, presence:true, numericality:true, uniqueness:{scope: :course_id, message: "already exists for this course"}

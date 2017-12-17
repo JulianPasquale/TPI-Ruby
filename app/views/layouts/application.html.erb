@@ -43,7 +43,9 @@
 			    <%- if (session[:actual_course]) then -%>
 			      <li class="nav-item"><%= link_to "Change course", courses_path, :method => :get, :class=> 'nav-link' %></li>
 		    	<%- end -%>
+		    	<%- if (current_user) then %>
 		    	<li class="nav-item"><%= link_to "Sign out", destroy_user_session_path, :method => :get, :class=>'nav-link' %> </li>
+		    	<% end %>
 		    </ul>
 		  	</div>
 			</nav>
