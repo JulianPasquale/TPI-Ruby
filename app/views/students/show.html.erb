@@ -25,5 +25,5 @@
   <%= @student.course %>
 </p>
 
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', course_students_path(@student.course) %>
+<%= link_to 'Edit', edit_course_student_path(@course,@student) %> |
+<%= link_to 'Back', courses_path(@course) %>

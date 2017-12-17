@@ -1,6 +1,6 @@
 class Evaluation < ApplicationRecord
   belongs_to :course
-  has_many :grades
+  has_many :grades, :dependent => :destroy
   validates :tittle, presence:true, uniqueness: {scope: :course_id, message: "can't be the same twice in a course"}
   validates :min_grade, presence:true, numericality:{minimum: -1}
   validates :date, presence:true

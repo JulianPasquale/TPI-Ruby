@@ -29,6 +29,7 @@ gem 'devise'
 gem 'bootstrap'
 gem 'figaro'
 gem 'simple_form'
+gem 'nested_form'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
