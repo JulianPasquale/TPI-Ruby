@@ -2,7 +2,9 @@
 
 <h1>Evaluations<%= link_to 'New Evaluation', new_course_evaluation_path(@course), {:class =>'btn btn-primary', :style=>'margin-left:15px;'} %>
 </h1>
-
+<br>
+<br>
+<% if not @evaluations.empty? then %>
 <table class="table table-stripped table-bordered">
   <thead>
     <tr>
@@ -28,5 +30,8 @@
   </tbody>
 </table>
 
+<% else %>
+<p style="color: red;">Create an evaluation</p>
+<% end %>
 <br>
 

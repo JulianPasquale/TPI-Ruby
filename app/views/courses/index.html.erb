@@ -2,6 +2,7 @@
 
 <h1>Courses</h1>
   <ul class="list-group">
+    <% if not @courses.empty? then %>
     <% @courses.each do |course| %>
         <li class="list-group-item"><%= link_to "#{course.year} - #{course.name}", course, {:style => 'text-decoration: none; color:#e1121d;'} %>
           
@@ -15,6 +16,9 @@
 
       </li>  
         
+    <% end %>
+    <% else %>
+    <p style="color: red">Create a course</p>
     <% end %>
   </ul>
 <br>

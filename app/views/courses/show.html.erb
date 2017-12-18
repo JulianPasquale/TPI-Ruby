@@ -15,6 +15,13 @@
 <br>
 <br>
 
+      <% if @course.evaluations.empty? then %>
+        <p style="color: red;">No evaluations</p>
+      <% else %>
+        <% if @course.students.empty? then %>
+          <p style="color: red;">No students</p>
+        <% else %>
+
 <table class="table table-stripped table-bordered">
   <thead>
 	<tr>
@@ -48,3 +55,6 @@
     	<% end %>
   </tbody>
 </table>
+
+<% end %>
+<% end %>

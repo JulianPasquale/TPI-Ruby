@@ -3,7 +3,7 @@
 <h1>Students<%= link_to 'Add Student', new_course_student_path, {:class=>'btn btn-primary', :style=>'margin-left:15px'} %></h1>
 
 <br>
-
+<% if not @students.empty? then %>
 <table class="table table-stripped table-bordered">
   <thead>
     <tr>
@@ -31,4 +31,7 @@
   </tbody>
 </table>
 
+<% else %>
+<p style="color: red;">Add a student</p>
+<% end %>
 <br>
