@@ -53,19 +53,15 @@
       	<% end %>  
       </tr>
     	<% end %>
-  </tbody>
-</table>
-
-<% end %>
-<% end %>
-
-
-<% @course.evaluations.each do |evaluation| %>
+      <tr>
+        <% @course.evaluations.each do |evaluation| %>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=<%= "#modal#{evaluation.id}" %>>
-  <%= evaluation.tittle %>
-</button>
-
+<td></td>
+<td>
+<a href="#" data-toggle="modal" data-target=<%= "#modal#{evaluation.id}" %>>
+  Resume view
+</a>
+</td>
 <!-- Modal -->
 <div class="modal fade" id="<%= "modal#{evaluation.id}" %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -93,3 +89,12 @@
 </div>
 
 <% end %>
+      </td>
+      </tr>
+  </tbody>
+</table>
+
+<% end %>
+<% end %>
+
+
