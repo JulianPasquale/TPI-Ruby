@@ -20,7 +20,7 @@ class Evaluation < ApplicationRecord
     end
   end
 
-  def count_aprobed
+  def count_approved
     self.grades.select {|g| g.passed? }.count
   end
 
@@ -32,9 +32,9 @@ class Evaluation < ApplicationRecord
     self.grades.where("grade = -1").count
   end
 
-  def percentage_aprobed
+  def percentage_approved
     begin
-      ((self.count_aprobed) * 100) / (self.grades.count - self.count_ausent)
+      "#{((self.count_approved) * 100) / (self.grades.count - self.count_ausent)}%"
     rescue ZeroDivisionError
       "No student has presented"
     end
