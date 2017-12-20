@@ -13,10 +13,7 @@ class Student < ApplicationRecord
 
   def create_grades
     self.course.evaluations.each do |evaluation|
-      g= Grade.new
-      g.student_id = self.id
-      g.evaluation_id =evaluation.id
-      g.save
+      grades.create evaluation: evaluation
     end
   end
 end
