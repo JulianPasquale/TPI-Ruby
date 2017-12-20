@@ -1,5 +1,7 @@
+<br>
 <h1>Editing Grade</h1>
 
 <%= render 'form', grade: @grade %>
 
-<%= link_to 'Back', course_path(@evaluation.course) %>
+<br>
+<%= link_to 'Back', course_path(@evaluation.course), {:class => 'btn btn-primary'} %>

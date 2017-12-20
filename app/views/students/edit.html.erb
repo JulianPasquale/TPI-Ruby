@@ -1,6 +1,6 @@
+<br>
 <h1>Editing Student</h1>
 
 <%= render 'form', student: @student %>
-
-<%= link_to 'Show', course_student_path(@course,@student) %> |
-<%= link_to 'Back', course_students_path(@course) %>
+<br>
+<%= link_to 'Back', course_students_path(@course), {:class =>'btn btn-primary'} %>

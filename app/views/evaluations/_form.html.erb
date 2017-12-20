@@ -11,23 +11,22 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :tittle %>
-    <%= form.text_field :tittle, id: :evaluation_tittle %>
+  <div class="row">
+    <%= form.input :tittle, wrapper_html: { class: 'col-6' } %>
   </div>
 
-  <div class="form-group">
-    <%= form.input :min_grade, id: :evaluation_min_grade %>
+  <div class="row">
+    <%= form.input :min_grade, id: :evaluation_min_grade, wrapper_html: { class: 'col-6' } %>
   </div>
 
-  <div class="form-group">
-    <%= form.input :date, id: :evaluation_date %>
+  <div class="row">
+    <%= form.input :date, id: :evaluation_date, wrapper_html: { class: 'col-6' } %>
   </div>
 
-  <label for="Course">Course: </label>
+  <label>Course: </label>
   <%= @course.name %>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions" style="text-align: center;">
+    <%= form.submit class:'btn btn-success' %>
   </div>
 <% end %>
