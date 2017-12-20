@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, only: [:sessions]
 
   resources :courses do
-  	resources :students
+  	resources :students, except: :show
 	resources :evaluations, except: :show do
 		resources :grades, except: [:show, :destroy]
 	end

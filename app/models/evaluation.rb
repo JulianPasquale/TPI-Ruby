@@ -3,9 +3,11 @@ class Evaluation < ApplicationRecord
   has_many :grades, :dependent => :destroy
   validates :tittle, presence:true, uniqueness: {scope: :course_id, message: "can't be the same twice in a course"}
   validates :min_grade, presence:true, numericality:{minimum: -1}
-  validates :date, presence:true
+  validates :date, presence:true 
   validates :course_id, presence:true
   after_save :create_grades
+  before_save :validate_date
+  default_scope { order('date ASC') }
 
   def to_s
     tittle
@@ -20,6 +22,13 @@ class Evaluation < ApplicationRecord
     end
   end
 
+  def validate_date
+    if (self.date.year < course.year) then
+      self.errors.add(:date, "Must be greather than the courses year") 
+      throw :abort
+    end
+  end
+
   def count_approved
     self.grades.select {|g| g.passed? }.count
   end
@@ -28,13 +37,13 @@ class Evaluation < ApplicationRecord
     self.grades.select {|g| (not g.passed?) and (g.grade > -1) }.count
   end
 
-  def count_ausent
+  def count_absent
     self.grades.where("grade = -1").count
   end
 
   def percentage_approved
     begin
-      "#{((self.count_approved) * 100) / (self.grades.count - self.count_ausent)}%"
+      "#{((self.count_approved) * 100) / (self.grades.count - self.count_absent)}%"
     rescue ZeroDivisionError
       "No student has presented"
     end
