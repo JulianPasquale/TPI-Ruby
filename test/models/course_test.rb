@@ -18,16 +18,13 @@ class CourseTest < ActiveSupport::TestCase
     c2.destroy
   end
 
-#  test "should delete dependents" do
-#    c=Course.new(name:'Coue_evaltion8115', year:2022)
-#    c.save
-#    e=Evaluation.new(tittle:'teig90880', min_grade:4, date:Date.today,course_id:c.id)
-#    assert_equal(true, e.save)
-#    assert_equal(e, Evaluation.last)
-#    c.destroy
-#    assert_equal(Course.last,c)
-#    e.destroy
-#  end
+  test "should delete dependents" do
+     @course= Course.find_or_create_by(name:'Course_evaluations_model_test', year:Date.today.year)
+     @evaluation = @course.evaluations.find_or_create_by(tittle:'Evaluation_year', min_grade:5, date:(Date.today))
+     assert_equal(@evaluation, Evaluation.last)
+     @course.destroy
+     assert_not_equal(Evaluation.last,@evaluation)
+  end
 
   
 

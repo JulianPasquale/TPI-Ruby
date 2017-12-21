@@ -1,9 +1,6 @@
 #require 'test_helper'
 
 class EvaluationTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
 
   test "evaluation year must greater or equal than course year" do
     c= Course.new(name:'Course_evaluation_year', year:2018)
