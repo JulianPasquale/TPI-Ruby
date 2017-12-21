@@ -1,9 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+This is a proyect for the subject "Taller de Tecnologias de Produccion de Software"
 
 * Ruby version: 2.4.1
 
@@ -53,7 +50,7 @@ $ rails test
 ```
 	
    You can run the tests individualy like this
-   
+
 ```ruby
 $ rails test ROUTE_TO_THE_TESTFILE
 ```
