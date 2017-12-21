@@ -28,4 +28,16 @@ class EvaluationTest < ActiveSupport::TestCase
     assert_equal(false,Grade.where('evaluation_id=?',e1.id).exists?)
   end
 
+  test "should not add evaluation" do
+    c= Course.new(name:'Course_evaluation_nc', year:Date.today.year)
+    c.save
+    e1=Evaluation.new(tittle:'EvaluationNotc1', min_grade:5, date:2.years.ago,course:c)    
+    assert_equal(false,e1.save)
+    e2= Evaluation.new(tittle:'EvaluationNotc2', min_grade:-15, date:Date.today,course:c)
+    assert_equal(false,e2.save)
+    c.destroy
+    e1.destroy
+    e2.destroy
+  end
+
 end
