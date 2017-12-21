@@ -23,7 +23,7 @@ class EvaluationsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create evaluation" do
     assert_difference('Evaluation.count') do
-      post course_evaluations_url(@course), params: { evaluation: { course_id: @course.id, date: @evaluation.date, min_grade: 5, tittle: "#{@evaluation.tittle}4" } }
+      post course_evaluations_url(@course), params: { evaluation: { course_id: @course.id, date: @evaluation.date, min_grade: 5, tittle: "#{@evaluation.tittle}_new" } }
     end
 
     assert_redirected_to course_url @course

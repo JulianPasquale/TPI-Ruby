@@ -11,8 +11,8 @@ class EvaluationTest < ActiveSupport::TestCase
     c.destroy
   end  
 
-  test "must delete grades" do
-    c= Course.new(name:'Course_evaluation_grades', year:Date.today.year)
+  test "should delete grades" do
+    c= Course.new(name:'Course_evaluation_grades_test', year:Date.today.year)
     c.save
     e1=Evaluation.new(tittle:'Evaluation_year', min_grade:5, date:Date.today,course:c)    
     e1.save
@@ -28,8 +28,10 @@ class EvaluationTest < ActiveSupport::TestCase
   test "should not add evaluation" do
     c= Course.new(name:'Course_evaluation_nc', year:Date.today.year)
     c.save
+    #Year must be greater or equal than course's year
     e1=Evaluation.new(tittle:'EvaluationNotc1', min_grade:5, date:2.years.ago,course:c)    
     assert_equal(false,e1.save)
+    #min_grade must be greater than -1
     e2= Evaluation.new(tittle:'EvaluationNotc2', min_grade:-15, date:Date.today,course:c)
     assert_equal(false,e2.save)
     c.destroy

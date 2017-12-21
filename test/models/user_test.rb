@@ -1,4 +1,4 @@
-#require 'test_helper'
+#srequire 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   # test "the truth" do

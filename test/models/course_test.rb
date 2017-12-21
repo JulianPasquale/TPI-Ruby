@@ -8,22 +8,23 @@ class CourseTest < ActiveSupport::TestCase
   end
 
   test "should not create course" do
-  	c1=Course.new(name:'Course_test1', year:2017)
+  	c1=Course.new(name:'Course_test1', year:Date.today.year)
     c1.save
-    c2=Course.new(name:'Course_test1', year:2017)
-    c3=Course.new(name:'Course_test1', year:2010)
+    #Already exists
+    c2=Course.new(name:'Course_test1', year:Date.today.year)
+    #Year must be greater
+    c3=Course.new(name:'Course_test1', year:Date.today.year-10)
     assert_equal(false,c2.save)
     assert_equal(false,c3.save)
     c1.destroy
-    c2.destroy
   end
 
   test "should delete dependents" do
      @course= Course.find_or_create_by(name:'Course_evaluations_model_test', year:Date.today.year)
-     @evaluation = @course.evaluations.find_or_create_by(tittle:'Evaluation_year', min_grade:5, date:(Date.today))
-     assert_equal(@evaluation, Evaluation.last)
+     @evaluation = @course.evaluations.create(tittle:'Evaluation_year', min_grade:5, date:(Date.today))
+     assert_equal(@evaluation, Evaluation.find(@evaluation.id))
      @course.destroy
-     assert_not_equal(Evaluation.last,@evaluation)
+     assert_equal(false,Evaluation.exists?(@evaluation.id))
   end
 
   
