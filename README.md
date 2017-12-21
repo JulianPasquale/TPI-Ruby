@@ -8,20 +8,20 @@ Things you may want to cover:
 * Ruby version: 2.4.1
 
 * System dependencies:
- 
-    System will use the gem mysql2, and you need to install its dependences
+
+   System will use the gem mysql2, and you need to install its dependences
 
 ```console
 $ sudo apt-get install libmysqlclient-dev
 ```
 	
-	For the gem nokogiri run
+   For the gem nokogiri run
 
 ```console
-  sudo apt-get install build-essential patch ruby-dev zlib1g-dev liblzma-dev
+$  sudo apt-get install build-essential patch ruby-dev zlib1g-dev liblzma-dev
 ```
 	
-	Finally you need to install the system dependences includes in the Gemfile
+   Finally you need to install the system dependences includes in the Gemfile
 
 ```console
 $ bundle install
@@ -45,11 +45,15 @@ $ rails db:seed
 ```
 
 * How to run the test suite
-	For test you need to execute the command
+
+   For test you need to execute the command
+
 ```ruby
 $ rails test
 ```
-	You can run the tests individualy like this
+	
+   You can run the tests individualy like this
+   
 ```ruby
 $ rails test ROUTE_TO_THE_TESTFILE
 ```
