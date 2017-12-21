@@ -5,7 +5,7 @@ class EvaluationTest < ActiveSupport::TestCase
   #   assert true
   # end
 
-  test "evaluation year must greather or equal than course year" do
+  test "evaluation year must greater or equal than course year" do
     c= Course.new(name:'Course_evaluation_year', year:2018)
     c.save
     e1=c.evaluations.new(tittle:'Evaluation_year', min_grade:5, date:(5.years.ago))
@@ -15,17 +15,17 @@ class EvaluationTest < ActiveSupport::TestCase
   end  
 
   test "must delete grades" do
-    c= Course.new(name:'Course_evaluation_year', year:2018)
+    c= Course.new(name:'Course_evaluation_grades', year:Date.today.year)
     c.save
-    e1=c.evaluations.new(tittle:'Evaluation_year', min_grade:5, date:(5.years.ago))    
+    e1=Evaluation.new(tittle:'Evaluation_year', min_grade:5, date:Date.today,course:c)    
     e1.save
-    s=Student.new(name:'test',lastname:'deleteGrades',dni:12345,number:'12345')
+    s=Student.new(name:'name',lastname:'lastnam',dni:1234567,number:'151515',course:c)
     s.save
-    g=e1.grades.new(grade:5, student_id:s.id)
-    assert_equal(true,g.save)	
+    assert_equal(true,Grade.where('evaluation_id=?',e1.id).exists?)	
     e1.destroy
     s.destroy
-    assert_equal(g,Grade.find(g.id))
+    c.destroy
+    assert_equal(false,Grade.where('evaluation_id=?',e1.id).exists?)
   end
 
 end
