@@ -29,6 +29,7 @@ gem 'devise'
 gem 'bootstrap', '~> 4.0.0.beta2'
 gem 'figaro'
 gem 'simple_form'
+gem 'nested_form'
 gem 'autoprefixer-rails'
 gem 'jquery-rails'
 
