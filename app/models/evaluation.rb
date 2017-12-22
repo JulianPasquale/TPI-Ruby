@@ -31,7 +31,7 @@ class Evaluation < ApplicationRecord
     self.grades.select {|g| g.passed? }.count
   end
 
-  def count_dissaproved
+  def count_disapproved
     self.grades.select {|g| (not g.passed?) and (g.grade > -1) }.count
   end
 
