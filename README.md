@@ -55,3 +55,8 @@ $ rails test
 $ rails test ROUTE_TO_THE_TESTFILE
 ```
 
+* Finally you must run the next command to start rails server in port 3000 (as default) 
+
+```ruby
+$ rails s
+```
