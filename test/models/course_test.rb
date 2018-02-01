@@ -22,7 +22,7 @@ class CourseTest < ActiveSupport::TestCase
   end
 
   test "should delete dependents" do
-     @evaluation = @course.evaluations.create(tittle:"#{@course.name}_evaluation", min_grade:5, date:(Date.today))
+     @evaluation = @course.evaluations.first
      assert(@evaluation.persisted?)
      @course.destroy
      refute(Evaluation.exists?(@evaluation.id))
@@ -46,6 +46,15 @@ class CourseTest < ActiveSupport::TestCase
     assert_difference('Course.count', -1) do
       @course.destroy
     end
+  end
+
+  test "should have grades" do
+    assert_not_empty(@course.grades)
+  end
+
+  test "should not have grades" do
+    curso_cuatro = courses(:curso_cuatro)
+    assert_empty(curso_cuatro.grades)
   end
 
 end
