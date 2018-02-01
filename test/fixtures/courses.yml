@@ -1,9 +1,21 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  year: 1
-  name: MyString
+#Curso_uno tiene estudiantes y evaluaciones
+curso_uno:
+  year: 2018
+  name: Curso uno
 
-two:
-  year: 1
-  name: MyString
+#Curso_dos tiene evaluaciones
+curso_dos:
+  year: 2018
+  name: Curso dos
+
+#Curso_tres tiene estudiantes
+curso_tres:
+  year: 2019
+  name: Curso tres
+
+#Curso_cuatro no tiene estudiantes ni evaluaciones
+curso_cuatro:
+  year: 2019
+  name: Curso cuatro
+
