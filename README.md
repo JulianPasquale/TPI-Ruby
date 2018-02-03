@@ -60,3 +60,9 @@ $ rails test ROUTE_TO_THE_TESTFILE
 ```ruby
 $ rails s
 ```
+
+
+* For log in into the system:
+
+  email: admin@gmail.com
+  password: '123456'
