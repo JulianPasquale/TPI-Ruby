@@ -1,4 +1,4 @@
-class EvaluationsController < ApplicationController
+class EvaluationsController < BackendController
   before_action :set_course
   before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
 

@@ -1,0 +1,16 @@
+ /*
+ *= require_tree ./backend/
+ *= require_self
+ */
+
+@import "bootstrap";
+
+
+#notice{
+	color:green;
+}
+#error_explanation ul li{
+	text-decoration:none;
+	list-style:none;
+	color: red;
+}

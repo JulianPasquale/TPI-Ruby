@@ -1,4 +1,4 @@
-class GradesController < ApplicationController
+class GradesController < BackendController
   before_action :set_evaluation
   before_action :set_grade, only: [:show, :edit, :update, :destroy]
 
