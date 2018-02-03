@@ -1,25 +1,23 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   tittle: Primer parcial
   min_grade: 4.0
-  date: 2016-06-05
+  date: 2018-06-05
   course: curso_uno
 
 two:
   tittle: Segundo parcial
   min_grade: 7.0
-  date: 2016-12-12
+  date: 2019-12-12
   course: curso_uno
 
 three:
   tittle: Primer parcial
   min_grade: 7.0
-  date: 2017-12-12
+  date: 2019-12-12
   course: curso_dos
 
 four:
   tittle: Primer parcial
   min_grade: 7.0
-  date: 2017-12-12
+  date: 2019-12-12
   course: curso_dos

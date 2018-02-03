@@ -1,11 +1,14 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-c1_e1:
+c1_est1:
   grade: 1.5
   student: one
   evaluation: one
 
-c1_e2:
+c1_est2:
   grade: 8.5
+  student: one
+  evaluation: two
+
+c1_est5:
+  grade: -1
   student: one
   evaluation: two

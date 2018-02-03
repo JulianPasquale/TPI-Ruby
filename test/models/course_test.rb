@@ -7,39 +7,40 @@ class CourseTest < ActiveSupport::TestCase
   end
 
   test "Should create course" do
-    assert_difference('Course.count') do
-      Course.create(name: (@course.name + '2'), year: @course.year)
-    end
+    course = Course.create(name: (@course.name + '2'), year: @course.year)
+    assert course.valid?
   end
 
-  test "should not create course" do
-    assert_difference('Course.count', 0) do
-      Course.create(name:@course.name, year:@course.year)
-    end
-    assert_difference('Course.count', 0) do
-      Course.create(name:'Course_test1', year:@course.year-10)
-    end
+  test "should not be equals courses" do
+    course = Course.create(name:@course.name, year:@course.year)
+
+    refute course.valid?
+    assert_includes course.errors[:name],
+      "This course already exists"
+  end
+  
+  test "course year must be grater than last year" do
+    course = Course.create(name:'Course_test1', year:@course.year-10)
+    
+    refute course.valid?
+    assert_includes course.errors[:year],
+      "must be greater than #{Date.today.year - 1}"
   end
 
   test "should delete dependents" do
      @evaluation = @course.evaluations.first
-     assert(@evaluation.persisted?)
+     assert @evaluation.valid? 
+
      @course.destroy
-     refute(Evaluation.exists?(@evaluation.id))
+     refute Evaluation.exists?(@evaluation.id)
   end
 
   test "name should be present" do
     @course.name= ''
+
     refute(@course.valid?)
     assert_includes @course.errors[:name],
       I18n.t('errors.messages.blank')
-  end
-
-  test "year should be greater" do
-    @course.year= @course.year-10
-    refute(@course.valid?)
-    assert_includes @course.errors[:year],
-      "must be greater than #{(Date.today.year) -1}"
   end
 
   test "should delete course" do

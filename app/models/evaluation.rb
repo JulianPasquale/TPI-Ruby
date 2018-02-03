@@ -2,11 +2,12 @@ class Evaluation < ApplicationRecord
   belongs_to :course
   has_many :grades, :dependent => :destroy
   has_many :students, :through => :course
+  
   validates :tittle, presence:true, uniqueness: {scope: :course_id, message: "can't be the same twice in a course"}
   validates :min_grade, presence:true, numericality:{greater_than_or_equal_to: -1}
   validates :date, presence:true 
   validates :course_id, presence:true
-  after_save :create_grades
+  after_create :create_grades
   before_save :validate_date
   default_scope { order('date ASC') }
 
@@ -21,8 +22,8 @@ class Evaluation < ApplicationRecord
   end
 
   def validate_date
-    if (self.date.year < course.year) then
-      self.errors.add(:date, "Must be greather than the courses year") 
+    if (date.year < course.year) then
+      errors.add(:date, "must be greather than the courses year") 
       throw :abort
     end
   end

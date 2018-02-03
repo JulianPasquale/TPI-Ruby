@@ -32,7 +32,7 @@ gem 'simple_form'
 gem 'nested_form'
 gem 'autoprefixer-rails'
 gem 'jquery-rails'
-
+gem 'pry'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

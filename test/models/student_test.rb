@@ -1,32 +1,49 @@
-#require 'test_helper'
+require 'test_helper'
 
 class StudentTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
   
-  test "Student's dni must be unique in a course" do
-    @course= Course.find_or_create_by(name:'grade_model_test', year:Date.today.year)
-    @student= @course.students.find_or_create_by(name:'name',lastname:'lastnam',dni:12347,number:'15151')
-    @student2= @course.students.new(name:'Name',lastname:'lastname',dni:12347,number:'15')
-    refute(@student2.save)
+  def setup
+    @student = students(:one)
   end
+  
+  test "should create student" do
+    student = Student.create(
+      name: 'Estudiante', 
+      lastname: 'numero 10',
+      dni: (@student.dni + 100),
+      number: "#{@student.number + '1321/2'}",
+      course: @student.course
+    )
+    assert student.persisted?
+  end
+
+  test "Student's dni must be unique in a course" do
+    student = Student.create(
+      name: 'Name',
+      lastname: 'lastname',
+      dni: @student.dni,
+      number: "#{@student.number + '1321/2'}",
+      course: @student.course
+    )
+
+    refute student.valid?
+    assert_includes student.errors[:dni], 
+      "already exists for this course"
+  end
+
 
   test "Student's number must be unique in a course" do
-    @course= Course.find_or_create_by(name:'grade_model_test', year:Date.today.year)
-    @student= @course.students.find_or_create_by(name:'name',lastname:'lastnam',dni:1234,number:'15')
-    @student2= @course.students.new(name:'Name',lastname:'lastname',dni:1234795,number:'15')
-    refute(@student2.save)
+    student = Student.create(
+      name: 'Name',
+      lastname: 'lastname',
+      dni: (@student.dni + 20),
+      number: @student.number,
+      course: @student.course
+    )
+
+    refute student.valid?
+    assert_includes student.errors[:number], 
+      "already exists for this course"
   end
 
-  test "should not create student" do
-    refute(Student.new.save)
-    @course= Course.find_or_create_by(name:'grade_model_test', year:Date.today.year)
-    #Student's name is not optional
-    @student1= @course.students.new(lastname:'lastnam',dni:1234,number:'15')
-    refute(@student1.save)
-    #Student's lastname is not optional
-    @student1= @course.students.new(name:'name',dni:1234,number:'15')
-    refute(@student1.save)
-  end
 end
