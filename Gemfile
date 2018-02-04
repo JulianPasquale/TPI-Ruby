@@ -33,7 +33,7 @@ gem 'nested_form'
 gem 'autoprefixer-rails'
 gem 'jquery-rails'
 gem 'pry'
-
+gem 'snackbarjs-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

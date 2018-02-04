@@ -1,6 +1,5 @@
 <br>
-<h1 style="text-align: center;">New Student</h1>
+<h1 class="text-center"> <%= "#{t(:new)} #{t(:student).downcase}" %> </h1>
 
 <%= render 'form', student: @student %>
 <br>
-<%= link_to 'Back', course_students_path, {:class => 'btn btn-primary'} %>

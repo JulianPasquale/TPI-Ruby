@@ -1,0 +1,24 @@
+<tr>
+  <td> <%= student.name %>       </td>
+  <td> <%= student.lastname %>   </td>
+  <td> <%= student.dni %>        </td>
+  <td> <%= student.number %>     </td>
+  <td> <%= student.course %>     </td>
+  
+  <td> 
+      <%= link_to t(:edit), 
+             edit_course_student_path(@course, student),
+             class: 'btn btn-primary' 
+       %>      
+  </td>
+  
+  <td> 
+      <%= link_to t(:delete), 
+             course_student_path(@course, student), 
+             method: :delete, 
+             data: { confirm: t(:confirm) },
+             class: 'btn btn-danger' 
+       %>
+  </td>
+</tr>
+

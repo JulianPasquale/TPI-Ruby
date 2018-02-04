@@ -1,37 +1,39 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Students<%= link_to 'Add Student', new_course_student_path, {:class=>'btn btn-primary', :style=>'margin-left:15px'} %></h1>
+<br>
+<h1 class="text-center"> 
+  <%= t(:students) %>
+  <%= link_to t(:new), 
+        new_course_student_path, 
+        class: 'btn btn-success', 
+        style: 'margin-left:15px' 
+  %>        
+</h1>
 
 <br>
 <% if not @students.empty? then %>
-<table class="table table-stripped table-bordered">
+  
+<table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Lastname</th>
-      <th>Dni</th>
-      <th>Number</th>
-      <th>Course</th>
-      <th colspan="2">Actions</th>
+      <th scope="col"> <%= t(:name) %>           </th>
+      <th scope="col"> <%= t(:lastname) %>       </th>
+      <th scope="col"> DNI                       </th>
+      <th scope="col"> <%= t(:student_number) %> </th>
+      <th scope="col"> <%= t(:course) %>         </th>
+      <th colspan="2">                           </th>
     </tr>
   </thead>
-
   <tbody>
-    <% @students.each do |student| %>
-      <tr>
-        <td><%= student.name %></td>
-        <td><%= student.lastname %></td>
-        <td><%= student.dni %></td>
-        <td><%= student.number %></td>
-        <td><%= student.course %></td>
-        <td><%= link_to 'Edit', edit_course_student_path(@course, student) %></td>
-        <td><%= link_to 'Destroy', course_student_path(@course, student), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+    
+    <%= render @students %>
+
+   </tbody>
 </table>
 
 <% else %>
-<p style="color: red;">Add a student</p>
+  
+  <div class="alert alert-danger" role="alert">
+    <%= t(:add_students) %>
+  </div>
+
 <% end %>
 <br>

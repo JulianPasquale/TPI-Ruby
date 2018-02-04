@@ -56,6 +56,10 @@
 
     <%= yield %>
 
+      <section id="snackbar-container-l">
+        <%= flash_messages if flash %>
+      </section>
+
     </div>
   </body>
 </html>

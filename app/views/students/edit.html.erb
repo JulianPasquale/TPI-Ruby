@@ -1,6 +1,6 @@
 <br>
-<h1>Editing Student</h1>
-
+<h1 style="text-align: center;"> <%= "#{t(:edit)} #{t(:student).downcase}" %> </h1>
+<br>
 <%= render 'form', student: @student %>
 <br>
-<%= link_to 'Back', course_students_path(@course), {:class =>'btn btn-primary'} %>
+
