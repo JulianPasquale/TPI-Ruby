@@ -9,50 +9,14 @@
   </head>
 
 	<header>
-			<nav class="navbar navbar-expand navbar-light" style="background-color: #8DAABA;">
-			  <span class="navbar-brand" href="#"><img width="35" height="35" alt="" src=<%= image_url('ruby.png') %>></span>
-			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			    <span class="navbar-toggler-icon"></span>
-			  </button>
-			  <div class="collapse navbar-collapse" id="navbarNav">
-			    <ul class="navbar-nav mr-auto">
-
-			      <%- if (session[:actual_course]) then -%>
-			        <% actual_course = Course.find(session[:actual_course]) %>
-			      <li class="nav-item">
-			    	<%= link_to actual_course, course_path(actual_course), :method => :get, :style =>'text-decoration:none', :class =>'nav-link' %>
-			      </li>
-
-			      <li class="nav-item">
-			        <%= link_to 'Students', course_students_path(actual_course), :style =>'text-decoration:none', :class =>'nav-link' %>
-			      </li>
-			      <li class="nav-item">
-			        <%= link_to 'Evaluations', course_evaluations_path(actual_course), :style =>'text-decoration:none', :class =>'nav-link' %>
-			      </li>
-
-			      <%- else -%>
-			      <li class="nav-item">
-			    	<%= link_to "Courses", courses_path, :method => :get, :style =>'text-decoration:none', :class =>'nav-link' %>
-			      </li>
-			      <%- end -%>
-
-
-			    </ul>
-			    <ul class="navbar-nav right">
-			    <%- if (session[:actual_course]) then -%>
-			      <li class="nav-item"><%= link_to "Change course", courses_path, :method => :get, :class=> 'nav-link' %></li>
-		    	<%- end -%>
-		    	<%- if (current_user) then %>
-		    	<li class="nav-item"><%= link_to "Sign out", destroy_user_session_path, :method => :get, :class=>'nav-link' %> </li>
-		    	<% end %>
-		    </ul>
-		  	</div>
-			</nav>
+		<%= render './navbar' %>
 	</header>
 
 
-  <body style="background-color: #BDBDBE;">
-  	<div class="container">
+  <body style="padding-bottom: 30px;">
+  	<br>
+  	<br>
+  	<div class="container" style="background-color: #ffffff; padding-bottom: 50px; padding-top: 30px;">
 
     <%= yield %>
 

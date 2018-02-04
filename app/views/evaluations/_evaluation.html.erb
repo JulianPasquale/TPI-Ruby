@@ -1,0 +1,20 @@
+<tr>
+  <td>  <%= evaluation.tittle %>     </td>
+  <td>  <%= evaluation.min_grade %>  </td>
+  <td>  <%= evaluation.date %>       </td>
+  <td>  <%= evaluation.course %>     </td>
+  <td>  
+  	    <%= link_to t(:edit), 
+              edit_course_evaluation_path(@course, evaluation),
+              class: 'btn btn-primary' 
+        %>    
+  </td>
+  <td>  
+  	    <%= link_to t(:delete), 
+              course_evaluation_path(@course, evaluation), 
+              method: :delete, 
+              data: { confirm: t(:confirm) },
+              class: 'btn btn-danger' 
+        %>     
+  </td>
+</tr>

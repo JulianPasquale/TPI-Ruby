@@ -1,32 +1,44 @@
-<%= simple_form_for [@course, @evaluation], html: { class: 'form-horizontal' } do |form| %>
-  <% if evaluation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(evaluation.errors.count, "error") %> prohibited this evaluation from being saved:</h2>
+<%= simple_form_for [@course, @evaluation], 
+      html: { class: 'form-horizontal' } do |form| 
+%>
 
-      <ul>
-      <% evaluation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="row col-sm-12">
+    <div class="offset-sm-1"></div>
+    <%= form.input :tittle, wrapper_html: { class: 'col-10' } %>
+  </div>
+
+  <div class="row col-sm-12">
+    <div class="offset-sm-1"></div>
+    <%= 
+        form.input :min_grade, 
+          id: :evaluation_min_grade, 
+          wrapper_html: { class: 'col-4' } 
+    %>
+    <div class="offset-sm-2"></div>
+    <%= 
+        form.date_field :date,
+          id: :evaluation_date, 
+          class: 'col-4'
+    %>
+  </div>
+
+<br>
 
   <div class="row">
-    <%= form.input :tittle, wrapper_html: { class: 'col-6' } %>
+    <span class="text-center col-sm-12" style="font-size: 20px;">
+      <%= form.label "#{t(:course)}:" %>
+      <%= @course.name %>
+    </span>
   </div>
 
-  <div class="row">
-    <%= form.input :min_grade, id: :evaluation_min_grade, wrapper_html: { class: 'col-6' } %>
+<br>
+
+  <div class="text-center">
+    <%= link_to t(:back), 
+          course_evaluations_path, 
+          class: 'btn btn-primary' 
+    %>
+    <%= form.submit t(:submit), class: 'btn btn-success' %>
   </div>
 
-  <div class="row">
-    <%= form.input :date, id: :evaluation_date, wrapper_html: { class: 'col-6' } %>
-  </div>
-
-  <label>Course: </label>
-  <%= @course.name %>
-
-  <div class="actions" style="text-align: center;">
-    <%= form.submit class:'btn btn-success' %>
-  </div>
 <% end %>

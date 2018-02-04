@@ -1,37 +1,36 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Evaluations<%= link_to 'New Evaluation', new_course_evaluation_path(@course), {:class =>'btn btn-primary', :style=>'margin-left:15px;'} %>
+<h1 class="text-center", style="margin-top: 30px;"> 
+  <%= t(:evaluations) %>
+  <%= link_to t(:new), 
+        new_course_evaluation_path(@course), 
+        class: 'btn btn-primary', 
+        style: 'margin-left:15px;' 
+  %>
 </h1>
-<br>
-<br>
-<% if not @evaluations.empty? then %>
-<table class="table table-stripped table-bordered">
-  <thead>
-    <tr>
-      <th>Tittle</th>
-      <th>Min grade</th>
-      <th>Date</th>
-      <th>Course</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @evaluations.each do |evaluation| %>
+<br>
+
+<% if not @evaluations.empty? then %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= evaluation.tittle %></td>
-        <td><%= evaluation.min_grade %></td>
-        <td><%= evaluation.date %></td>
-        <td><%= evaluation.course %></td>
-        <td><%= link_to 'Edit', edit_course_evaluation_path(@course, evaluation) %></td>
-        <td><%= link_to 'Destroy', course_evaluation_path(@course, evaluation), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th scope="col"> <%= t(:title) %>          </th>
+        <th scope="col"> <%= t(:min_grade) %>      </th>
+        <th scope="col"> <%= t(:date) %>           </th>
+        <th scope="col"> <%= t(:course) %>         </th>
+        <th colspan="2">                           </th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <%= render @evaluations %>      
+    </tbody>
+  </table>
 
 <% else %>
-<p style="color: red;">Create an evaluation</p>
+
+  <div class="alert alert-danger" role="alert">
+    <%= t(:add_evaluations) %>
+  </div>
+
 <% end %>
-<br>
 

@@ -1,7 +1,9 @@
-class Evaluation < ApplicationRecord
+class Evaluation < ActiveRecord::Base
+  default_scope { order('date ASC') }
+
   belongs_to :course
-  has_many :grades, :dependent => :destroy
-  has_many :students, :through => :course
+  has_many :grades, dependent: :destroy
+  has_many :students, through: :course
   
   validates :tittle, presence:true, uniqueness: {scope: :course_id, message: "can't be the same twice in a course"}
   validates :min_grade, presence:true, numericality:{greater_than_or_equal_to: -1}
@@ -9,7 +11,7 @@ class Evaluation < ApplicationRecord
   validates :course_id, presence:true
   after_create :create_grades
   before_save :validate_date
-  default_scope { order('date ASC') }
+  
 
   def to_s
     tittle

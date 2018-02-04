@@ -1,4 +1,6 @@
-<%= simple_form_for [@course,student] do |form| %>
+<%= simple_form_for [@course,student], 
+      html: { class: 'form-horizontal' } do |form| 
+%>
 
   <div class="row">
     <%= form.input :name, wrapper_html: { class: 'col-6' } %>

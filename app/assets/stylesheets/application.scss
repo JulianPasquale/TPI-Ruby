@@ -1,30 +1,12 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
  *= require_tree .
  *= require_self
+ *= require application_snackbar
  */
 
 @import "bootstrap";
 @import "snackbar";
-
-#notice{
-	color:green;
-}
-#error_explanation ul li{
-	text-decoration:none;
-	list-style:none;
-	color: red;
-}
+@import "snackbar-material";
 
 html,
 body {
@@ -74,76 +56,4 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-}
-.snackbar.error {
-  background-color: red;
-}
-.snackbar.alert {
-  background-color: yellow;
-  color: black;
-}
-.snackbar.notice {
-  background-color: green;
-}
-
-.bg-red {
-  background: #ff7676 !important;
-  color: #fff;
-}
-
-.bg-red:hover {
-  color: #fff;
-}
-
-.bg-blue {
-  background: #85b4f2 !important;
-  color: #fff;
-}
-
-.bg-blue:hover {
-  color: #fff;
-}
-
-.bg-yellow {
-  background: #eef157 !important;
-  color: #fff;
-}
-
-.bg-yellow:hover {
-  color: #fff;
-}
-
-.bg-green {
-  background: #54e69d !important;
-  color: #fff;
-}
-
-.bg-green:hover {
-  color: #fff;
-}
-
-.bg-orange {
-  background: #ffc36d !important;
-  color: #fff;
-}
-
-.bg-orange:hover {
-  color: #fff;
-}
-
-.bg-violet {
-  background: #796AEE !important;
-  color: #fff;
-}
-
-.bg-violet:hover {
-  color: #fff;
-}
-
-.bg-gray {
-  background: #ced4da !important;
-}
-
-.bg-white {
-  background: #fff !important;
 }

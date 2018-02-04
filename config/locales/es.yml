@@ -1,5 +1,4 @@
 es:
-  add_students: 'Agrega estudiantes'
   login: 'Loguearse'
   logout: 'Salir'
   back: 'Volver'
@@ -8,17 +7,31 @@ es:
   show: 'Ver'
   delete: 'Borrar'
   submit: 'Guardar'
-  submiting: 'Guardando'
   all: 'Todos'
   confirm: '¿Confirmar operación?'
+  success: 'Operación realizada con éxito'
+  
+  course: 'Curso'
+  
+  add_students: 'Agrega estudiantes'  
   name: 'Nombre'
   lastname: 'Apellido'
   students: 'Estudiantes'
   student: 'Estudiante'
   student_number: 'Legajo'
-  success: 'Operación realizada con éxito'
-  course: 'Curso'
   dni: 'dni'
+
+  user: 'Usuario'
+  email_addres: 'Correo electrónico'
+  password: 'Contraseña'
+  remember_me: 'Recordarme'
+
+  add_evaluations: 'Agrega evaluaciones'
+  evaluation: 'Evaluacion'
+  evaluations: 'Evaluaciones'
+  title: 'Titulo'
+  min_grade: 'Nota de aprobacion'
+  date: 'Fecha'
 
   activerecord:
   errors:
