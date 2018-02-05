@@ -24,9 +24,8 @@ class EvaluationTest < ActiveSupport::TestCase
 
   test "year must greater or equal than course year" do
     @evaluation.date= (@evaluation.date - 10.years)
-     binding.pry
-
-   refute @evaluation.valid?
+ 
+    refute @evaluation.valid?
     assert_includes @evaluation.errors[:date],
       "must be greather than the courses year"
   end  

@@ -2,8 +2,6 @@ class StudentsController < BackendController
   before_action :set_course
   before_action :set_student, only: [:show, :edit, :update, :destroy]
 
-  include FlashHelper
-
   def index
     @students = @course.students
   end
@@ -23,7 +21,7 @@ class StudentsController < BackendController
         flash[:success] = t(:success)
         redirect_to course_students_path(@course) 
       else
-        flash[:error] = flash_error_format(@student)
+        flash[:error] = view_context.flash_error_format(@student)
         render :new
       end
   end
@@ -33,7 +31,7 @@ class StudentsController < BackendController
         flash[:success] = t(:success)
         redirect_to course_students_path(@course)
       else
-        flash[:error] = flash_error_format(@student)
+        flash[:error] = view_context.flash_error_format(@student)
         render :edit 
       end
   end

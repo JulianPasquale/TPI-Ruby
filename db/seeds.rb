@@ -1,3 +1,5 @@
+Course.destroy_all
+
 User.create(
   email: "admin@gmail.com", 
   password: "123456", 
@@ -47,7 +49,7 @@ end
   Evaluation.create!(
     tittle: "#{'Fecha' + (i.to_s)}",
     min_grade: 4,
-    date: (Date.tomorrow),
+    date: (1.year.from_now),
     course: c1
   )
 
@@ -55,29 +57,25 @@ end
   	course: c2, 
   	tittle: "#{'Fecha' + (i.to_s)}",
   	min_grade: 5,
-  	date: (Date.today)
+  	date: (1.year.from_now)
   )
 
   Evaluation.create!(
   	course: c3, 
   	tittle: "#{'Fecha' + (i.to_s)}",
   	min_grade: 6,
-  	date: (Date.today)
+  	date: (1.year.from_now)
   )
 
 end
 
-c1.evaluations.each do |evaluation| 
-  evaluation.grades.each do |g|
+c1.grades.each do |g|
   g.grade=rand(-1..10)
   g.save
-  end
 end
 
 
-c3.evaluations.each do |evaluation| 
-  evaluation.grades.each do |g|
+c3.grades.each do |g|
     g.grade=rand(-1..10)
     g.save
-  end
 end

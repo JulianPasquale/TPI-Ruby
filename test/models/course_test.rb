@@ -23,8 +23,9 @@ class CourseTest < ActiveSupport::TestCase
     course = Course.create(name:'Course_test1', year:@course.year-10)
     
     refute course.valid?
-    assert_includes course.errors[:year],
-      "must be greater than #{Date.today.year - 1}"
+    assert course.errors.details[:year].any? do |each| 
+      each[:error] == :greater_than
+    end
   end
 
   test "should delete dependents" do
