@@ -10,8 +10,11 @@ es:
   all: 'Todos'
   confirm: '¿Confirmar operación?'
   success: 'Operación realizada con éxito'
+  sign_out: 'Salir'
   
   course: 'Curso'
+  add_course: 'Agrega un curso'
+  change_course: 'Cambiar curso'
   
   add_students: 'Agrega estudiantes'  
   name: 'Nombre'

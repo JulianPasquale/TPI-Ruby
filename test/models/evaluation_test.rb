@@ -22,14 +22,14 @@ class EvaluationTest < ActiveSupport::TestCase
     assert evaluation.persisted?
   end
 
-#  test "year must greater or equal than course year" do
-#    @evaluation.date= (@evaluation.date - 10.years).to_s
-#     binding.pry
+  test "year must greater or equal than course year" do
+    @evaluation.date= (@evaluation.date - 10.years)
+     binding.pry
 
- #   refute @evaluation.valid?
-#    assert_includes @evaluation.errors[:year],
-#      "must be greather than the courses year"
-#  end  
+   refute @evaluation.valid?
+    assert_includes @evaluation.errors[:date],
+      "must be greather than the courses year"
+  end  
 
   test "should update evaluation" do
     @evaluation.update( tittle: 'new_tittle', min_grade: 8)

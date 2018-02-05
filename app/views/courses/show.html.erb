@@ -1,32 +1,52 @@
-<p id="notice"><%= notice %></p>
-<h1 style="display: inline;"><%= @course.year %> - <%= @course.name %></h1>  <%= link_to edit_course_path(@course),{:style=>"margin-left: 15px;height: 30px; width: 30px; display: inline;"} do %>
-            <img src=<%= image_url('edit.png') %> style="height: 30px; width: 30px;">
-          <% end %> 
-<br>
-<small>
-	<%= link_to "Change course", courses_path%> 
-</small>
+<ul class="row">
+  <h1 style="text-align: center;">
+    <%= @course.year %> - <%= @course.name %>
+  </h1>  
+
+  <%= 
+    link_to edit_course_path(@course),
+      style: 'margin-left: 15px; height: 30px; width: 30px; display: inline;' do 
+  %>
+    <img src=<%= image_url('edit.png') %> style="height: 30px; width: 30px;">
+  <% end %> 
+</ul>
 
 <br>
-<%= link_to "Students",course_students_path(@course), {:style =>'color:white;',:class =>'btn btn-primary'}%>
-<%= link_to 'Evaluations', course_evaluations_path(@course), {:style =>'color:white;', :class =>'btn btn-primary'} %>
+
+<br>
+
+<%= link_to t(:students),
+      course_students_path(@course), 
+      style: 'color:white;',
+      class: 'btn btn-primary'
+%>
+<%= link_to t(:evaluations), 
+      course_evaluations_path(@course), 
+      style: 'color:white;', 
+      class: 'btn btn-primary'
+%>
 
 <br>
 <br>
 <br>
 
-      <% if @course.evaluations.empty? then %>
-        <p style="color: red;">No evaluations</p>
-      <% else %>
-        <% if @course.students.empty? then %>
-          <p style="color: red;">No students</p>
-        <% else %>
+<% if @course.evaluations.empty? then %>
+  <div class="alert alert-danger" role="alert">
+    <%= t(:add_evaluations) %>
+  </div>
+<% else %>
+  <% if @course.students.empty? then %>
+    <div class="alert alert-danger" role="alert">
+      <%= t(:add_students) %>
+    </div>
+  <% else %>
 
-<table class="table table-stripped table-bordered table-responsive">
-  <thead>
-	<tr>
-  		<th>Student</th>
-  		<% @course.evaluations.each do |evaluation| %>
+
+    <table class="table table-stripped table-bordered table-responsive">
+      <thead>
+	      <tr>
+  		    <th>Student</th>
+  		    <% @course.evaluations.each do |evaluation| %>
   			<th><%= evaluation.tittle %></th>
   		  <th></th>
       <% end %>
@@ -56,6 +76,7 @@
           <% end %>
       <tr>
         <% @course.evaluations.each do |evaluation| %>
+
 <!-- Button trigger modal -->
 <td></td>
 <td>

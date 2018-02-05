@@ -1,26 +1,41 @@
 <h1>Courses</h1>
   <ul class="list-group">
     <% if not @courses.empty? then %>
-    <% @courses.each do |course| %>
-        <li class="list-group-item"><%= link_to "#{course.year} - #{course.name}", course, {:style => 'text-decoration: none; color:#e1121d;'} %>
+      <% @courses.each do |course| %>
+        <li class="list-group-item">
+          <%= link_to "#{course.year} - #{course.name}", course,
+                style: 'text-decoration: none;'
+          %>
           
-          <%= link_to course, method: :delete, data: { confirm: 'Are you sure?' }, :style=>"float:right; height: 30px; width: 30px; display: inline;" do %>
+          <%= link_to course, 
+                method: :delete, 
+                data: { confirm: t(:confirm) }, 
+                style: 'float:right; height: 30px; width: 30px; display: inline;' do 
+          %>
             <img src=<%= image_url('remove.png')%> alt="Remove"> 
           <% end %>
 
-          <%= link_to edit_course_path(course),{:style=>"margin-right: 30px;height: 30px; width: 30px; display: inline; float:right;"} do %>
+          <%= link_to edit_course_path(course),
+                style: 'margin-right: 30px;height: 30px; width: 30px; display: inline; float:right;' do 
+          %>
             <img src=<%= image_url('edit.png') %> style="height: 30px; width: 30px;">
           <% end %>
 
-      </li>  
+        </li>  
         
     <% end %>
     <% else %>
-    <p style="color: red">Create a course</p>
+      <div class="alert alert-danger" role="alert">
+        <%= t(:add_course) %>
+      </div>
     <% end %>
   </ul>
 <br>
 
-<%= link_to 'New Course', new_course_path,{:class=>'btn btn-primary'} %>
+<div class="row">
+  <span class="offset-sm-5">
+    <%= link_to t(:new), new_course_path, class: 'btn btn-primary btn-lg' %>
+  </span>
+</div>
 
 <br>

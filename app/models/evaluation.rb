@@ -10,7 +10,7 @@ class Evaluation < ActiveRecord::Base
   validates :date, presence:true 
   validates :course_id, presence:true
   after_create :create_grades
-  before_save :validate_date
+  validate :validate_date
   
 
   def to_s
@@ -26,7 +26,6 @@ class Evaluation < ActiveRecord::Base
   def validate_date
     if (date.year < course.year) then
       errors.add(:date, "must be greather than the courses year") 
-      throw :abort
     end
   end
 

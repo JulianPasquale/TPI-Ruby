@@ -16,9 +16,11 @@
     %>
     <div class="offset-sm-2"></div>
     <%= 
-        form.date_field :date,
+        form.input :date, as: :date,
+          label: t(:date),
           id: :evaluation_date, 
-          class: 'col-4'
+          wrapper_html: { class: 'col-4' },
+          class: 'form-control'
     %>
   </div>
 
