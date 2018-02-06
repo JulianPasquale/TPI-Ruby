@@ -26,8 +26,9 @@ class EvaluationTest < ActiveSupport::TestCase
     @evaluation.date= (@evaluation.date - 10.years)
  
     refute @evaluation.valid?
-    assert_includes @evaluation.errors[:date],
-      "must be greather than the courses year"
+    assert @evaluation.errors.details[:date].any? do |each| 
+      each[:error] == :greater_than
+    end
   end  
 
   test "should update evaluation" do
@@ -45,8 +46,9 @@ class EvaluationTest < ActiveSupport::TestCase
     )
 
     refute evaluation.valid?
-    assert_includes evaluation.errors[:tittle],
-      "can't be the same twice in a course"
+    assert evaluation.errors.details[:tittle].any? do |each| 
+      each[:error] == :taken
+    end
   end
 
   test "count of approved" do

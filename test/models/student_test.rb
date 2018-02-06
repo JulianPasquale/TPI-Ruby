@@ -27,8 +27,9 @@ class StudentTest < ActiveSupport::TestCase
     )
 
     refute student.valid?
-    assert_includes student.errors[:dni], 
-      "already exists for this course"
+    assert student.errors.details[:dni].any? do |each| 
+      each[:error] == :taken
+    end
   end
 
 
@@ -42,8 +43,9 @@ class StudentTest < ActiveSupport::TestCase
     )
 
     refute student.valid?
-    assert_includes student.errors[:number], 
-      "already exists for this course"
+    assert student.errors.details[:number].any? do |each| 
+      each[:error] == :taken
+    end
   end
 
 end

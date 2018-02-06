@@ -15,8 +15,9 @@ class CourseTest < ActiveSupport::TestCase
     course = Course.create(name:@course.name, year:@course.year)
 
     refute course.valid?
-    assert_includes course.errors[:name],
-      "This course already exists"
+    assert course.errors.details[:name].any? do |each| 
+      each[:error] == :taken
+    end
   end
   
   test "course year must be grater than last year" do
@@ -40,8 +41,9 @@ class CourseTest < ActiveSupport::TestCase
     @course.name= ''
 
     refute(@course.valid?)
-    assert_includes @course.errors[:name],
-      I18n.t('errors.messages.blank')
+    assert @course.errors.details[:name].any? do |each| 
+      each[:error] == :blanck
+    end
   end
 
   test "should delete course" do

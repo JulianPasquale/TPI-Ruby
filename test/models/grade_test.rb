@@ -17,8 +17,9 @@ class GradeTest < ActiveSupport::TestCase
       grade:5)
    
     refute grade.valid?
-    assert_includes grade.errors[:student_id],
-      "can't have more than one grade for the same evaluation"
+    assert grade.errors.details[:student_id].any? do |each| 
+      each[:error] == :taken
+    end
   end
 
   test "should create grade in absent" do
