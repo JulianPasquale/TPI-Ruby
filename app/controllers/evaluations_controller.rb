@@ -2,8 +2,6 @@ class EvaluationsController < BackendController
   before_action :set_course
   before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
 
-  include FlashHelper
-
   def index
     @evaluations= @course.evaluations
   end
@@ -23,7 +21,7 @@ class EvaluationsController < BackendController
         flash[:success] = t(:success)
         redirect_to course_evaluations_path(@course)
       else
-        flash[:error] = flash_error_format(@evaluation)
+        flash[:error] = view_context.flash_error_format(@evaluation)
         render :new 
       end
   end
@@ -33,7 +31,7 @@ class EvaluationsController < BackendController
         flash[:success] = t(:success)
         redirect_to course_evaluations_path(@course)
       else
-        flash[:error] = flash_error_format(@evaluation)
+        flash[:error] = view_context.flash_error_format(@evaluation)
         render :edit 
       end
   end

@@ -3,9 +3,8 @@
     <%= @course.year %> - <%= @course.name %>
   </h1>  
 
-  <%= 
-    link_to edit_course_path(@course),
-      style: 'margin-left: 15px; height: 30px; width: 30px; display: inline;' do 
+  <%= link_to edit_course_path(@course),
+        style: 'margin-left: 15px; height: 30px; width: 30px; display: inline;' do 
   %>
     <img src=<%= image_url('edit.png') %> style="height: 30px; width: 30px;">
   <% end %> 

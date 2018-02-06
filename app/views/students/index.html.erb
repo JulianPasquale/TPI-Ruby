@@ -14,10 +14,18 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col"> <%= t(:name) %>           </th>
-        <th scope="col"> <%= t(:lastname) %>       </th>
-        <th scope="col"> DNI                       </th>
-        <th scope="col"> <%= t(:student_number) %> </th>
+        <th scope="col"> 
+          <%= t(:name, scope: [:activerecord, :attributes, :student]) %>           
+        </th>
+        <th scope="col"> 
+          <%= t(:lastname, scope: [:activerecord, :attributes, :student]) %>
+        </th>
+        <th scope="col"> 
+          <%= t(:dni, scope: [:activerecord, :attributes, :student]) %>
+        </th>
+        <th scope="col"> 
+          <%= t(:number, scope: [:activerecord, :attributes, :student]) %>
+        </th>
         <th scope="col"> <%= t(:course) %>         </th>
         <th colspan="2">                           </th>
       </tr>

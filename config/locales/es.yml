@@ -17,12 +17,9 @@ es:
   change_course: 'Cambiar curso'
   
   add_students: 'Agrega estudiantes'  
-  name: 'Nombre'
-  lastname: 'Apellido'
   students: 'Estudiantes'
   student: 'Estudiante'
-  student_number: 'Legajo'
-  dni: 'dni'
+  
 
   user: 'Usuario'
   email_addres: 'Correo electrónico'
@@ -32,13 +29,19 @@ es:
   add_evaluations: 'Agrega evaluaciones'
   evaluation: 'Evaluacion'
   evaluations: 'Evaluaciones'
-  title: 'Titulo'
-  min_grade: 'Nota de aprobacion'
+  
 
   activerecord:
     attributes:
       evaluation:
         date: 'Fecha'
+        tittle: 'Titulo'
+        min_grade: 'Nota de aprobacion'
+      student:
+        name: 'Nombre'
+        lastname: 'Apellido'
+        number: 'Legajo'
+        dni: 'DNI'
     errors:
       format: "%{attribute} %{message}"
       messages:
