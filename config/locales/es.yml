@@ -29,7 +29,11 @@ es:
   add_evaluations: 'Agrega evaluaciones'
   evaluation: 'Evaluacion'
   evaluations: 'Evaluaciones'
-  
+
+  ausent_count: 'Cantidad de ausentes'
+  dissaprovved_count: 'Cantidad de desaprobados'
+  approved_count: 'Cantidad de aprobados'
+  approved_percentage: 'Porcentaje de aprobados'  
 
   activerecord:
     attributes:
