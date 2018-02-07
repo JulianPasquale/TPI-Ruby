@@ -1,64 +1,61 @@
-<table class="table table-stripped table-bordered table-responsive">
-  <thead>
+<table class="table table-striped">
+  <thead class="thead-dark">
     <tr>
-    <th> <%= t(:student) %> </th>
-    <% course.evaluations.each do |evaluation| %>
-      <th><%= evaluation.tittle %></th>
-      <th></th>
-    <% end %>
+      <th scope="col"> <%= t(:student) %> </th>
+      <th scope="col"> <%= t(:number, scope: [:activerecord, :attributes, :student]) %> </th>
+      <% course.evaluations.each do |evaluation| %>
+        <th scope="col"><%= evaluation.tittle %></th>
+      <% end %>
     </tr>
   </thead>
 
-
-  
-
   <tbody>  
-    	<% course.students.each do |student| %>
-        <tr>  
-          <td><%= student %></td>
-            <% student.grades.joins(:evaluation).order('date asc').each do |grade| %>
-              <td>
-                <%= select_tag grade.grade,
-                      options_for_select(
-                      (-1..10).map do |each|
-                        if each == -1
-                          [ "Ausente", -1 ]
-                        elsif grade.evaluation.min_grade >= each
-                          [ "Desaprobado- #{each}", each ]
-                        else
-                          [ "Aprobado- #{each}", each ]
-                        end
-                      end, selected: grade.grade
-                      ),
-                      class: 'form-control col-sm-5',
-                      data: {
-                        url: course_evaluation_grade_path(course, grade.evaluation, grade),      
-                        method:   :patch,
-                        remote:   true,
-                        behavior: 'updateGrade'
-                      }
-                %>
-              </td>
-              <td><%= link_to 'Edit', edit_course_evaluation_grade_path(course,grade.evaluation,grade) %></td> 
-    	   <% end %>
-        </tr> 
-          <% end %>
+    <% course.students.each do |student| %>
+      <tr> 
+        <td><%= student %></td>
+        <td style="text-align: center;"><%= student.number %></td>
+        <% student.grades.joins(:evaluation).order('date asc').each do |grade| %>
+          <td>
+            <%= select_tag grade.grade,
+                  options_for_select(
+                    (-1..10).map do |each|
+                      if each == -1
+                        [ "Ausente", -1 ]
+                      elsif grade.evaluation.min_grade >= each
+                        [ "#{each} (D)", each ]
+                      else
+                        [ "#{each} (A)", each ]
+                      end
+                    end, selected: grade.grade
+                    ),
+                    class: 'form-control select2 col-sm-7',
+                    data: {
+                      url: course_evaluation_grade_path(
+                        course, grade.evaluation, grade),      
+                      method:   :patch,
+                      remote:   true,
+                      behavior: 'updateGrade',
+                      id: 'grade'
+                    }
+            %>
+          </td>
+    	  <% end %>
+      </tr> 
+    <% end %>
       <tr>
+        <td></td>
+        <td></td>
         <% course.evaluations.each do |evaluation| %>
-
-<td></td>
-<td>
-  <%= "#{t(:approved_count)}: #{evaluation.count_approved}" %>
-  <br>
-  <%= "#{t(:dissaprovved_count)}: #{evaluation.count_disapproved}" %>
-  <br>
-  <%= "#{t(:ausent_count)}: #{evaluation.count_absent}" %>
-  <br>
-  <%= "#{t(:approved_percentage)}: #{evaluation.percentage_approved}" %>
-</td>
-
-<% end %>
-      </td>
+          <td>
+            <%= "#{t(:approved_count)}: #{evaluation.count_approved}" %>
+            <br>
+            <%= "#{t(:dissaprovved_count)}: #{evaluation.count_disapproved}" %>
+            <br>
+            <%= "#{t(:ausent_count)}: #{evaluation.count_absent}" %>
+            <br>
+            <%= "#{t(:approved_percentage)}: #{evaluation.percentage_approved}" %>
+          </td>
+        <% end %>
       </tr>
   </tbody>
 </table>

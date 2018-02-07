@@ -13,6 +13,7 @@ es:
   sign_out: 'Salir'
   
   course: 'Curso'
+  courses: 'Cursos'
   add_course: 'Agrega un curso'
   change_course: 'Cambiar curso'
   
@@ -46,6 +47,9 @@ es:
         lastname: 'Apellido'
         number: 'Legajo'
         dni: 'DNI'
+      course:
+        year: 'Año'
+        name: 'Nombre'
     errors:
       format: "%{attribute} %{message}"
       messages:

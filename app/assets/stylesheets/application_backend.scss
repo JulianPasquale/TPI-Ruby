@@ -2,6 +2,8 @@
  *= require_tree ./backend/
  *= require_self
  *= require application_snackbar
+ *= require select2
+ *= require select2-bootstrap
  */
 
 @import "bootstrap";

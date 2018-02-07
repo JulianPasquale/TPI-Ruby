@@ -5,4 +5,6 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require snackbar.js
+//= require select2.js
 //= require flash
+//= require select2-full
