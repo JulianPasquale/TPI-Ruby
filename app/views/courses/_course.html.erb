@@ -16,7 +16,7 @@
         <td style="text-align: center;"><%= student.number %></td>
         <% student.grades.joins(:evaluation).order('date asc').each do |grade| %>
           <td>
-            <%= select_tag grade.grade,
+            <%= select_tag :grade,
                   options_for_select(
                     (-1..10).map do |each|
                       if each == -1
@@ -26,16 +26,14 @@
                       else
                         [ "#{each} (A)", each ]
                       end
-                    end, selected: grade.grade
-                    ),
+                    end, 
+                    grade.grade
+                  ),
                     class: 'form-control select2 col-sm-7',
                     data: {
-                      url: course_evaluation_grade_path(
-                        course, grade.evaluation, grade),      
-                      method:   :patch,
-                      remote:   true,
-                      behavior: 'updateGrade',
-                      id: 'grade'
+                      url:       course_evaluation_grade_path(course, grade.evaluation, grade),      
+                      method:    :put,
+                      remote:    true,
                     }
             %>
           </td>
