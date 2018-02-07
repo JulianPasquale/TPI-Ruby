@@ -6,6 +6,6 @@ class Grade < ApplicationRecord
   validates :evaluation_id, presence:true
 
   def passed?
-  	grade > (evaluation.min_grade)
+  	grade >= (evaluation.min_grade)
   end	
 end

@@ -4,10 +4,9 @@ Rails.application.routes.draw do
 
   resources :courses do
   	resources :students, except: :show
-	resources :evaluations, except: :show do
-		resources :grades, except: [:show, :destroy]
-	end
+	resources :evaluations, except: :show
   end
+  
+  resources :grades, only: :update
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
