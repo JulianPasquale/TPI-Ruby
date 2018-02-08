@@ -9,6 +9,5 @@ c1_est2:
   evaluation: two
 
 c1_est5:
-  grade: -1
   student: one
   evaluation: two

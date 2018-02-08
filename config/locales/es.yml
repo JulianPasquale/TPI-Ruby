@@ -20,7 +20,7 @@ es:
   add_students: 'Agrega estudiantes'  
   students: 'Estudiantes'
   student: 'Estudiante'
-  
+  absent: 'Ausente'
 
   user: 'Usuario'
   email_addres: 'Correo electrónico'

@@ -30,15 +30,15 @@ class Evaluation < ActiveRecord::Base
   end
 
   def count_approved
-    self.grades.select {|g| g.passed? }.count
+    grades.select {|g| g.passed? }.count
   end
 
   def count_disapproved
-    self.grades.select {|g| (not g.passed?) and (g.grade > -1) }.count
+    grades.select {|g| g.grade && !g.passed? }.count
   end
 
   def count_absent
-    self.grades.where("grade = -1").count
+    grades.where(grade: nil).count
   end
 
   def percentage_approved

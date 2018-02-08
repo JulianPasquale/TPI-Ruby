@@ -1,32 +1,33 @@
+<% students = course.students %>
+<% evaluations = course.evaluations %>
 <table class="table table-striped">
   <thead class="thead-dark">
     <tr>
       <th scope="col"> <%= t(:student) %> </th>
       <th scope="col"> <%= t(:number, scope: [:activerecord, :attributes, :student]) %> </th>
-      <% course.evaluations.each do |evaluation| %>
+      <% evaluations.each do |evaluation| %>
         <th scope="col"><%= evaluation.tittle %></th>
       <% end %>
     </tr>
   </thead>
 
   <tbody>  
-    <% course.students.each do |student| %>
+    <% students.each do |student| %>
       <tr> 
         <td><%= student %></td>
         <td style="text-align: center;"><%= student.number %></td>
-        <% student.grades.joins(:evaluation).order('date asc').each do |grade| %>
-          <td class="js-grade" data-id="<%= grade.id %>" data-evaluation>
-            <%= select_tag :grade,
-                  options_for_select( generate_values_for_select(grade), 
-                    grade.grade
-                  ),
-                    class: 'custom-select form-control col-sm-7',
-                    data: {
-                      url: grade_path(grade),      
-                      method:    :put,
-                      remote:    true,
-                    }
-            %>
+        <% evaluations.each do |evaluation| %>
+          <% grade = evaluation.grades.where(student_id: student.id).take %>
+          <td>
+            <%= form_for grade, remote: true do |form| %>
+              <div class="input-group">
+                <%= form.number_field :grade, class: 'form-control',
+                      placeholder: t(:absent) %>
+                  <span class="input-group-btn">
+                    <%= form.submit t(:submit), class: 'btn btn-success' %>    
+                  </span>
+              </div>
+              <% end %>
           </td>
     	  <% end %>
       </tr> 
@@ -36,13 +37,19 @@
         <td></td>
         <% course.evaluations.each do |evaluation| %>
           <td>
-            <%= "#{t(:approved_count)}: #{evaluation.count_approved}" %>
-            <br>
-            <%= "#{t(:dissaprovved_count)}: #{evaluation.count_disapproved}" %>
-            <br>
-            <%= "#{t(:ausent_count)}: #{evaluation.count_absent}" %>
-            <br>
-            <%= "#{t(:approved_percentage)}: #{evaluation.percentage_approved}" %>
+            <p id="js-approved<%= evaluation.id %>" data-value="<%= evaluation.count_approved %>" >
+              <%= "#{t(:approved_count)}: #{evaluation.count_approved}" %>
+            </p>
+            <p id="js-disapproved<%= evaluation.id %>" data-value="<%= evaluation.count_disapproved %>">
+              <%= "#{t(:dissaprovved_count)}: #{evaluation.count_disapproved}" %>
+            </p>
+            <p id="js-absents<%= evaluation.id %>" data-value="<%= evaluation.count_absent %>">
+              <%= "#{t(:ausent_count)}: #{evaluation.count_absent}" %>
+            </p>
+            <p id="js-percentage<%= evaluation.id %>" data-value="<%= evaluation.percentage_approved %>">
+              <%= "#{t(:approved_percentage)}: #{evaluation.percentage_approved}" 
+              %>
+            </p>
           </td>
         <% end %>
       </tr>

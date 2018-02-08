@@ -2,7 +2,11 @@ class GradesController < BackendController
   before_action :set_grade, only: :update
 
   def update
-    @grade.update(grade_params)
+    if @grade.update(grade_params)
+      flash[:success] = t(:success)
+    else
+      flash[:error] = view_context.flash_error_format(@grade)
+    end
   end
 
   private
@@ -12,6 +16,6 @@ class GradesController < BackendController
     end
 
     def grade_params
-      params.permit(:grade, :student_id, :evaluation_id)
+      params.require(:grade).permit(:grade, :student_id, :evaluation_id)
     end
 end

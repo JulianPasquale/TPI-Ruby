@@ -1,6 +1,40 @@
 // Levantar flash messages
+<%  if flash[:success] 
+	  message = flash[:success]
+	  styles = 'callout callout-success bg-green'
+      flash.discard(:success)
+    else
+   	  message = flash[:error]
+	  styles = 'callout callout-error bg-red'
+      flash.discard(:error)
+    end
+%>
 $.snackbar({
-      content: "<%= t(:success) %>",
-      style:   'callout callout-success bg-green',
+      content: "<%= message %>",
+      style:   '<%= styles %>',
       timeout: 10000
 })
+
+// Actualizar resumen de evaluacion
+<% evaluation = @grade.evaluation %>
+  approved_container = $('#js-approved<%= evaluation.id %>')
+  disapproved_container = $('#js-disapproved<%= evaluation.id %>')
+  absents_container = $('#js-absents<%= evaluation.id %>')
+  percentage_container = $('#js-percentage<%= evaluation.id %>')
+
+  approved_container.text('<%= "#{t(:approved_count)}: #{evaluation.count_approved}" %>')
+  approved_container.data('value','<%= evaluation.count_approved %>')
+  disapproved_container.text('<%= "#{t(:dissaprovved_count)}: #{evaluation.count_disapproved}" %>')
+  disapproved_container.data('value','<%= evaluation.count_disapproved %>')
+  absents_container.text('<%= "#{t(:ausent_count)}: #{evaluation.count_absent}" %>')
+  absents_container.data('value','<%= evaluation.count_absent %>')
+  percentage_container.text('<%= "#{t(:approved_percentage)}: #{evaluation.percentage_approved}"%>')
+  percentage_container.data('value','<%= evaluation.percentage_approved %>')
+  debugger
+
+
+
+
+
+
+
