@@ -29,7 +29,7 @@ class GradeTest < ActiveSupport::TestCase
     )
 
     assert grade.valid?
-    assert_equal(-1, grade.grade)    
+    assert_nil(grade.grade)    
   end
 
 end
