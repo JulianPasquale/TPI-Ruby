@@ -28,6 +28,18 @@
                   </span>
               </div>
               <% end %>
+              <% result =
+                if grade.grade.nil?
+                  "Ausente"
+                elsif grade.passed? 
+                  "Aprobado"
+                else
+                  "Desaprobado"
+                end 
+              %>
+              <p id="js-passed<%= grade.id %>" data-value="<%= result %>">
+                <%= result %>
+              </p>
           </td>
     	  <% end %>
       </tr> 

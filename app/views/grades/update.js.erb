@@ -32,7 +32,20 @@ $.snackbar({
   percentage_container.data('value','<%= evaluation.percentage_approved %>')
   debugger
 
+// Actualizar passed
 
+  passed_container = $('#js-passed<%= @grade.id %>')
+  <% result = 
+    if @grade.grade.nil?
+      "Ausente"
+    elsif @grade.passed?
+      "Aprobado"
+    else
+      "Desaprobado"
+    end
+  %>
+  passed_container.text('<%= result %>')
+  passed_container.data('value','<%= result %>')
 
 
 
