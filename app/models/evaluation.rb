@@ -24,7 +24,7 @@ class Evaluation < ActiveRecord::Base
   end
 
   def validate_date
-    if (date.year <= course.year) then
+    if (date.year < course.year) then
       errors.add(:date, :greater_than_or_equal_to, count: course.year) 
     end
   end
